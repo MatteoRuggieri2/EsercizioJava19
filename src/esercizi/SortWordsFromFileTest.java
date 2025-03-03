@@ -5,14 +5,14 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
-class ReadAndSortTest {
+class SortWordsFromFileTest {
 
-	static ReadAndSort readAndSort;
+	static SortWordsFromFile readAndSort;
 	String pathFileName = "src/text_files/word-list.txt";
 	
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
-		readAndSort = new ReadAndSort();
+		readAndSort = new SortWordsFromFile();
 	}
 
 	@Test

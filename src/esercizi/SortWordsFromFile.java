@@ -2,20 +2,12 @@ package esercizi;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.util.Comparator;
 import java.util.Scanner;
 import java.util.Set;
 import java.util.TreeSet;
 
-/* READ AND SORT
- * Crea la classe ReadAndSort
- * 1 - Leggere un file di testo con parole separate da 1 o più spazi (parola1 parola2  parol...)
- * 2 - Restituire una stringa con le parole senza duplicati in ordine ALFABETICO INVERSO */
-
-
-
-public class ReadAndSort {
+public class SortWordsFromFile {
 	
 	private String pathFileName = "src/text_files/word-list.txt";
 	
@@ -28,8 +20,8 @@ public class ReadAndSort {
 	private String[] revertedWords;
 
 	public static void main(String[] args) {
-		ReadAndSort readAndSort = new ReadAndSort();
-		readAndSort.run();
+		SortWordsFromFile sortWordsFromFile = new SortWordsFromFile();
+		sortWordsFromFile.run();
 		
 	}
 	
