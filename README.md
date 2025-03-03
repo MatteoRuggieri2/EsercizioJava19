@@ -45,7 +45,7 @@ interface ReadFromFile {
     void sort(EnumSortType sortType);
     void sort(); /* Sorting according default sort type */
     boolean isWordPresent(String word);
-    void String toString();
+    String toString();
 }
 ```
 
