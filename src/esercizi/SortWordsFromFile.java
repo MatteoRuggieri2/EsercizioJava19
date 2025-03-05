@@ -66,11 +66,10 @@ public class SortWordsFromFile {
 			
 		});
 		
-		for (String string : uniqueFileWords) {
-			sortedWordsStr += string + ", ";
-		}
 		
-		System.out.println(sortedWordsStr);
+		
+		this.sortedWordsStr = makeString(uniqueFileWords.toArray(new String[0]));
+		System.out.println(this.sortedWordsStr);
 	}
 	
 	SortWordsFromFile(String fileName, EnumSortType sortType) {
@@ -146,6 +145,16 @@ public class SortWordsFromFile {
 //		}
 //
 //	}
+	
+	/* Questo metodo, dato un array di parole, forma la
+	stringa con virgole e punto alla fine. */
+	String makeString(String[] words) {
+		String result = "";
+		for (String string : words) {
+			result += string + ", ";
+		}
+		return result.substring(0, result.length() - 2) + ".";
+	}
 
 }
 
