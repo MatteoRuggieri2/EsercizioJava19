@@ -2,7 +2,6 @@ package esercizi;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Scanner;
 import java.util.Set;
@@ -14,100 +13,79 @@ public class SortWordsFromFile {
 	
 	private String textFileFolderPath = "src/text_files/";
 	
-	private String fileContent;
+	private String fileContent; // Contiene il contenuto del file in una stringa
 	
-	private String sortedWordsStr = "";
+	private String[] sortedWords; // Contiene le parole univoche e ordinate in base alla richiesta
 	
-	
-
-//	private Set<String> paroleUnicheInOrdineAlfabetico;
-//	
-//	private String[] revertedWords;
 	
 	
 	public static void main(String[] args) {
 		SortWordsFromFile sortWordsFromFile = new SortWordsFromFile("word-list.txt");
-		
+		SortWordsFromFile sortWordsFromFile2 = new SortWordsFromFile("word-list.txt", EnumSortType.SORT_ASCENDING);
+		SortWordsFromFile sortWordsFromFile3 = new SortWordsFromFile("word-list.txt", EnumSortType.SORT_DESCENDING);
 	}
+	
+	
 	
 	SortWordsFromFile(String fileName) {
 		extractsStrings(fileName, null);
-		System.out.println(this.sortedWordsStr);
+		System.out.println(this.toString());
 	}
 	
 	SortWordsFromFile(String fileName, EnumSortType sortType) {
 		extractsStrings(fileName, sortType);
-		System.out.println(this.sortedWordsStr);
+		System.out.println(this.toString());
 	}
 	
+	
+	
+	/* Questo metodo è quello principale, ha come compito quello
+	 * di richiamare tutti gli altri metodi della classe che lavorano
+	 * per rendere le parole del file, univoche, uppercase e ordinate. */
 	void extractsStrings(String fileName, EnumSortType sortType) {
 		
 		// Prendo il contenuto del file
 		this.fileContent = readFile(textFileFolderPath + fileName);
 		
-		// Metto le parole in un array (posso fare un metodo che le mette già univoche)
+		// Prendo le parole del file. le separo e le rendo univoche
 		String[] fileWords = this.fileContent.split(" +");
 		
-		// Le rendo univoche
-		ArrayList<String> uniqueFileWords = new ArrayList<String>();
-		for (String word : fileWords) {
-			if (!uniqueFileWords.contains(word.toUpperCase())) {
-				uniqueFileWords.add(word.toUpperCase());
-			}
-		}
-		
-		// Le ordino in modo alfabetico
-		uniqueFileWords.sort(new Comparator<String>() {
-
-			@Override
-			public int compare(String o1, String o2) {
-//				return test ? o1.compareTo(o2) : o2.compareTo(o1);
-				
-				if (sortType == EnumSortType.SORT_DESCENDING) {
-					return o2.compareTo(o1);
-				} else {
-					return o1.compareTo(o2);
-				}
-			}
-			
-		});
-		
-		
-		
-		this.sortedWordsStr = makeString(uniqueFileWords.toArray(new String[0]));
+		// Le ordino e le rendo univoche (grazie al TreeSet)
+		this.sortedWords = sortWords(fileWords, sortType);
 	}
 	
 	
-//	
-//	private void run() {
-//		
-//		/* Esiste un costruttore di TreeSet che accetta come paramtro un Comparator (che è un interfaccia)
-//		 * dove io vado ad implementare un metodo compare, in modo che quando il mio treeSet dovrà mettere
-//		 * in ordine gli elementi, richiamerà il metodo che io ho scritto (che ha sovrascritto il suo).
-//		 * In questo caso c'è prima s2 e poi s1 in modo che li mette in ordine contrario.
-//		 * 
-//		 * Nello specifico ecco come il comparator gestisce il suo ordinamento:
-//		 * ritorna un int -1 se deve spostare l'elemento indietro, 0 se deve rimanere al suo posto, 
-//		 * 1 se deve spostarlo avanti. */
-//		paroleUnicheInOrdineAlfabetico = new TreeSet<String>(
-//			// Classe anonima
-//			new Comparator<String>() {
-//				public int compare(String s1, String s2) {
-//					return s2.compareTo(s1);   // s1, s2 ordine alfabetico | s2, s1 ordine alf invertito
-//				}
-//			}
-//		);
-//		
-//	
-//		// Funzione che apre il file e restituisce il contenuto
-//		this.fileContent = readFile(this.pathFileName);
-//		
-//		// Splitto la stringa, elimino i doppioni e metto le parole in ordine ALFABETICO INVERTITO (ho sovrascritto l'ordinamento di default del TreeSet)
-//		splittaStringaEMettileInOrdineAlfabetico(fileContent);
-//		System.out.println("Parole in ordine: " + this.paroleUnicheInOrdineAlfabetico);
-//
-//	}
-//	
+	/* Questo metodo ordina le parole in base alla richiesta e
+	le rende univoche (proprietà del TreeSet) */
+	private String[] sortWords(String[] uniqueFileWords, EnumSortType sortType) {
+		
+		/* Esiste un costruttore di TreeSet che accetta come paramtro un Comparator
+		 * (che è un interfaccia) dove io vado ad implementare un metodo compare,
+		 * in modo che quando il mio treeSet dovrà mettere in ordine gli elementi,
+		 * richiamerà il metodo che io ho scritto (che ha sovrascritto il suo).
+		 * In questo caso c'è prima s2 e poi s1 in modo che li mette in ordine DESC. */
+		Set<String> result = new TreeSet<String>(
+			// Classe anonima
+			new Comparator<String>() {
+				public int compare(String s1, String s2) {
+					// s1, s2 ordine alfabetico | s2, s1 ordine alf invertito
+					if (sortType == EnumSortType.SORT_DESCENDING) {
+						return s2.compareTo(s1);
+					} else {
+						return s1.compareTo(s2);
+					}
+				}
+			}
+		);
+		
+		for (String word : uniqueFileWords) {
+			result.add(word);
+		}
+		
+		return result.toArray(new String[0]);
+	}
+
+
 	// Questa funzione prende il path del file, apre il file e ritorna una stringa con il contenuto
 	private String readFile(String path) {
 		
@@ -130,32 +108,23 @@ public class SortWordsFromFile {
 		
 		return fileContentString;
 	}
-//	
-//	/* Questa funzione prende una stringa, la splitta e poi mette le parole dentro
-//	 * un treeSet, quindi toglie i duplicati e le mette in ordine alfabetico */
-//	private void splittaStringaEMettileInOrdineAlfabetico(String text) {
-//		
-//		
-//		// Splitto il testo
-//		this.splittedText = this.splitString(text, " +");
-//		
-//		// Inserisco le parole nel treeset (in automatico le ordina in ordine alfabetico)
-//		for (String word : this.splittedText) {
-//			this.paroleUnicheInOrdineAlfabetico.add(word.toLowerCase());
-//		}
-//
-//	}
 	
-	//TODO - DEVO SOSTITUIRLO CON OVERRIDE DI TOSTRING() (che deve già fare un ordinamento)
-	//TODO - Usare StringBuilder
+	
+	//TODO - Usare StringBuilder per ottimizzare
 	/* Questo metodo, dato un array di parole, forma la
 	stringa con virgole e punto alla fine. */
-	String makeString(String[] words) {
+	private String makeString(String[] words) {
 		String result = "";
 		for (String string : words) {
-			result += string + ", ";
+			result += string.toUpperCase() + ", ";
 		}
 		return result.substring(0, result.length() - 2) + ".";
+	}
+	
+	
+	@Override
+	public String toString() {
+		return makeString(this.sortedWords);
 	}
 
 }
