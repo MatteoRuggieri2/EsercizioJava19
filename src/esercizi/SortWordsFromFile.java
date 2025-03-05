@@ -29,18 +29,18 @@ public class SortWordsFromFile {
 		SortWordsFromFile sortWordsFromFile = new SortWordsFromFile("word-list.txt");
 		
 	}
-
-	
 	
 	SortWordsFromFile(String fileName) {
+		extractsStrings(fileName, null);
+		System.out.println(this.sortedWordsStr);
+	}
+	
+	SortWordsFromFile(String fileName, EnumSortType sortType) {
 		//TODO
-		/* - Leggo il file
-		 * - Leggo tutte le parole
-		 * - Trasformo tutte le parole in UPPERCASE
-		 * - Rendo le parole UNIVOCHE
-		 * - Le ordino in ordine alfabetico
-		 * - Stampo la stringa contenente le parole ordinate
-		 * */
+		// Stessa cosa del costruttore sopra ma qui imposto il tipo di ordinamento
+	}
+	
+	void extractsStrings(String fileName, EnumSortType sortType) {
 		
 		// Prendo il contenuto del file
 		this.fileContent = readFile(textFileFolderPath + fileName);
@@ -61,7 +61,13 @@ public class SortWordsFromFile {
 
 			@Override
 			public int compare(String o1, String o2) {
-				return o1.compareTo(o2);
+//				return test ? o1.compareTo(o2) : o2.compareTo(o1);
+				
+				if (sortType == EnumSortType.SORT_DESCENDING) {
+					return o2.compareTo(o1);
+				} else {
+					return o1.compareTo(o2);
+				}
 			}
 			
 		});
@@ -69,12 +75,6 @@ public class SortWordsFromFile {
 		
 		
 		this.sortedWordsStr = makeString(uniqueFileWords.toArray(new String[0]));
-		System.out.println(this.sortedWordsStr);
-	}
-	
-	SortWordsFromFile(String fileName, EnumSortType sortType) {
-		//TODO
-		// Stessa cosa del costruttore sopra ma qui imposto il tipo di ordinamento
 	}
 	
 	
@@ -146,6 +146,8 @@ public class SortWordsFromFile {
 //
 //	}
 	
+	//TODO - DEVO SOSTITUIRLO CON OVERRIDE DI TOSTRING() (che deve già fare un ordinamento)
+	//TODO - Usare StringBuilder
 	/* Questo metodo, dato un array di parole, forma la
 	stringa con virgole e punto alla fine. */
 	String makeString(String[] words) {
