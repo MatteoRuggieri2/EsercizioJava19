@@ -11,30 +11,28 @@ import enums.EnumSortType;
 
 public class SortWordsFromFile {
 	
-	private String textFileFolderPath = "src/text_files/";
-	
 	private String fileContent; // Contiene il contenuto del file in una stringa
 	
 	private String[] sortedWords; // Contiene le parole univoche e ordinate in base alla richiesta
 	
 	
-	
+	//TODO - Da rimuovere e testare in JUnit
 	public static void main(String[] args) {
-		SortWordsFromFile sortWordsFromFile = new SortWordsFromFile("word-list.txt");
-		SortWordsFromFile sortWordsFromFile2 = new SortWordsFromFile("word-list.txt", EnumSortType.SORT_ASCENDING);
-		SortWordsFromFile sortWordsFromFile3 = new SortWordsFromFile("word-list.txt", EnumSortType.SORT_DESCENDING);
+		SortWordsFromFile swff = new SortWordsFromFile("src/text_files/word-list.txt");
+		SortWordsFromFile swff2 = new SortWordsFromFile("src/text_files/word-list.txt", EnumSortType.SORT_ASCENDING);
+		SortWordsFromFile swff3 = new SortWordsFromFile("src/text_files/word-list.txt", EnumSortType.SORT_DESCENDING);
 	}
 	
 	
 	
-	SortWordsFromFile(String fileName) {
-		extractsStrings(fileName, null);
-		System.out.println(this.toString());
+	SortWordsFromFile(String filePath) {
+		extractsStrings(filePath, null);
+		System.out.println(this.toString()); //TODO - Da rimuovere
 	}
 	
-	SortWordsFromFile(String fileName, EnumSortType sortType) {
-		extractsStrings(fileName, sortType);
-		System.out.println(this.toString());
+	SortWordsFromFile(String filePath, EnumSortType sortType) {
+		extractsStrings(filePath, sortType);
+		System.out.println(this.toString()); //TODO - Da rimuovere
 	}
 	
 	
@@ -42,10 +40,10 @@ public class SortWordsFromFile {
 	/* Questo metodo è quello principale, ha come compito quello
 	 * di richiamare tutti gli altri metodi della classe che lavorano
 	 * per rendere le parole del file, univoche, uppercase e ordinate. */
-	void extractsStrings(String fileName, EnumSortType sortType) {
+	void extractsStrings(String filePath, EnumSortType sortType) {
 		
 		// Prendo il contenuto del file
-		this.fileContent = readFile(textFileFolderPath + fileName);
+		this.fileContent = readFile(filePath);
 		
 		// Prendo le parole del file. le separo e le rendo univoche
 		String[] fileWords = this.fileContent.split(" +");
@@ -128,28 +126,6 @@ public class SortWordsFromFile {
 	}
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
