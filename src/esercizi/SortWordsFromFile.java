@@ -36,8 +36,8 @@ public class SortWordsFromFile {
 	}
 	
 	SortWordsFromFile(String fileName, EnumSortType sortType) {
-		//TODO
-		// Stessa cosa del costruttore sopra ma qui imposto il tipo di ordinamento
+		extractsStrings(fileName, sortType);
+		System.out.println(this.sortedWordsStr);
 	}
 	
 	void extractsStrings(String fileName, EnumSortType sortType) {
