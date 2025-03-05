@@ -20,7 +20,7 @@ Le parole devono essere trasformate in _UpperCase_, ordinate in modo _ascendente
 
 ### Output
 
-Dopo aver letto un file di testo contenente parole separate da 1 o più spazi (parola1 parola2  parol...), restituire una stringa con le parole senza duplicati in ordine **_Alfabetico Inverso_** e in **_UpperCase_**.
+Dopo aver letto un file di testo contenente parole separate da 1 o più spazi (parola1 parola2  parol...), restituire una stringa in **_UpperCase_** di parole **_non duplicate_** e seguendo l'**_ordinamento scelto_** attraverso l'enumerazione.
 
 ### Consigli
 
