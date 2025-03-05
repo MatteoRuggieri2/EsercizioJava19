@@ -16,7 +16,7 @@ class SortWordsFromFile implements ReadFromFile {
 ```
 
 > Il metodo **toString()** della classe restituisce una _stringa_ con tutte le parole incontrate.
-Le parole devono essere trasformate in _UpperCase_, ordinate in modo _ascendente_ (alfabetico inverso) e _senza duplicati_.
+Le parole devono essere trasformate in _UpperCase_, ordinate in modo _ascendente_ (alfabetico) e _senza duplicati_.
 
 ### Output
 
