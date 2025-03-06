@@ -125,19 +125,13 @@ public class SortWordsFromFile implements ReadFromFile { // TODO DEVE implementa
 		return sb.substring(0, sb.length() - 2) + ".";
 	}
 	
-	
+
+	// Questo metodo ricava il nome del file e lo salva in this.fileName
 	@Override
-	public String toString() {
-		return makeString(this.sortedWords);
+	public void setFileName(String filePath) {
+		String[] pathSections = filePath.split("/");
+		this.fileName = pathSections[pathSections.length - 1];
 	}
-
-
-
-	@Override
-	public void setFileName(String fileName) {
-		this.fileName = fileName;
-	}
-
 
 
 	@Override
@@ -147,13 +141,11 @@ public class SortWordsFromFile implements ReadFromFile { // TODO DEVE implementa
 	}
 
 
-
 	@Override
 	public void sort() {
 		// TODO Auto-generated method stub
 		
 	}
-
 
 
 	@Override
@@ -162,6 +154,11 @@ public class SortWordsFromFile implements ReadFromFile { // TODO DEVE implementa
 		return false;
 	}
 
+	
+	@Override
+	public String toString() {
+		return makeString(this.sortedWords);
+	}
 }
 
 
