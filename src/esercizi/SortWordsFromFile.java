@@ -108,15 +108,16 @@ public class SortWordsFromFile {
 	}
 	
 	
-	//TODO - Usare StringBuilder per ottimizzare
 	/* Questo metodo, dato un array di parole, forma la
-	stringa con virgole e punto alla fine. */
+	stringa con virgole e punto alla fine utilizzando
+	la classe ottimizzata StringBuilder di Java. */
 	private String makeString(String[] words) {
-		String result = "";
-		for (String string : words) {
-			result += string.toUpperCase() + ", ";
+		StringBuilder sb = new StringBuilder();
+		
+		for (String word : words) {
+			sb.append(word.toUpperCase() + ", ");
 		}
-		return result.substring(0, result.length() - 2) + ".";
+		return sb.substring(0, sb.length() - 2) + ".";
 	}
 	
 	
