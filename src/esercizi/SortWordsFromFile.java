@@ -9,7 +9,9 @@ import java.util.TreeSet;
 
 import enums.EnumSortType;
 
-public class SortWordsFromFile {
+public class SortWordsFromFile { // TODO DEVE implementare l'interfaccia
+	
+	// TODO - Questo è l'es 19
 	
 	private String fileContent; // Contiene il contenuto del file in una stringa
 	
