@@ -8,10 +8,13 @@ import java.util.Set;
 import java.util.TreeSet;
 
 import enums.EnumSortType;
+import interfaces.ReadFromFile;
 
-public class SortWordsFromFile { // TODO DEVE implementare l'interfaccia
+public class SortWordsFromFile implements ReadFromFile { // TODO DEVE implementare l'interfaccia
 	
 	// TODO - Questo è l'es 19
+	
+	private String fileName;
 	
 	private String fileContent; // Contiene il contenuto del file in una stringa
 	
@@ -126,6 +129,37 @@ public class SortWordsFromFile { // TODO DEVE implementare l'interfaccia
 	@Override
 	public String toString() {
 		return makeString(this.sortedWords);
+	}
+
+
+
+	@Override
+	public void setFileName(String fileName) {
+		this.fileName = fileName;
+	}
+
+
+
+	@Override
+	public void sort(EnumSortType sortType) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+
+	@Override
+	public void sort() {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+
+	@Override
+	public boolean isWordPresent(String word) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 
 }
