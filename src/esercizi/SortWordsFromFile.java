@@ -10,7 +10,7 @@ import java.util.TreeSet;
 import enums.EnumSortType;
 import interfaces.ReadFromFile;
 
-public class SortWordsFromFile implements ReadFromFile { // TODO DEVE implementare l'interfaccia
+public class SortWordsFromFile implements ReadFromFile {
 	
 	// TODO - Questo è l'es 19
 	
@@ -18,7 +18,9 @@ public class SortWordsFromFile implements ReadFromFile { // TODO DEVE implementa
 	
 	private String fileContent; // Contiene il contenuto del file in una stringa
 	
-	private String[] sortedWords; // Contiene le parole univoche e ordinate in base alla richiesta
+	private String[] fileWords;
+	
+	private String[] sortedFileWords; // Contiene le parole univoche e ordinate in base alla richiesta
 	
 	
 	//TODO - Da rimuovere e testare in JUnit
@@ -51,16 +53,16 @@ public class SortWordsFromFile implements ReadFromFile { // TODO DEVE implementa
 		this.fileContent = readFile(filePath);
 		
 		// Prendo le parole del file. le separo e le rendo univoche
-		String[] fileWords = this.fileContent.split(" +");
+		this.fileWords = this.fileContent.split(" +");
 		
 		// Le ordino e le rendo univoche (grazie al TreeSet)
-		this.sortedWords = sortWords(fileWords, sortType);
+		this.sortedFileWords = sortWords(this.fileWords, sortType);
 	}
 	
 	
 	/* Questo metodo ordina le parole in base alla richiesta e
 	le rende univoche (proprietà del TreeSet) */
-	private String[] sortWords(String[] uniqueFileWords, EnumSortType sortType) {
+	private String[] sortWords(String[] fileWords, EnumSortType sortType) {
 		
 		/* Esiste un costruttore di TreeSet che accetta come paramtro un Comparator
 		 * (che è un interfaccia) dove io vado ad implementare un metodo compare,
@@ -81,7 +83,7 @@ public class SortWordsFromFile implements ReadFromFile { // TODO DEVE implementa
 			}
 		);
 		
-		for (String word : uniqueFileWords) {
+		for (String word : fileWords) {
 			result.add(word);
 		}
 		
@@ -134,10 +136,35 @@ public class SortWordsFromFile implements ReadFromFile { // TODO DEVE implementa
 	}
 
 
+	/* Questo metodo ordina le parole in base alla richiesta e
+	le rende univoche (proprietà del TreeSet) */
 	@Override
 	public void sort(EnumSortType sortType) {
-		// TODO Auto-generated method stub
 		
+		/* Esiste un costruttore di TreeSet che accetta come paramtro un Comparator
+		 * (che è un interfaccia) dove io vado ad implementare un metodo compare,
+		 * in modo che quando il mio treeSet dovrà mettere in ordine gli elementi,
+		 * richiamerà il metodo che io ho scritto (che ha sovrascritto il suo).
+		 * In questo caso c'è prima s2 e poi s1 in modo che li mette in ordine DESC. */
+		Set<String> result = new TreeSet<String>(
+			// Classe anonima
+			new Comparator<String>() {
+				public int compare(String s1, String s2) {
+					// s1, s2 ordine alfabetico | s2, s1 ordine alf invertito
+					if (sortType == EnumSortType.SORT_DESCENDING) {
+						return s2.compareTo(s1);
+					} else {
+						return s1.compareTo(s2);
+					}
+				}
+			}
+		);
+		
+		for (String word : this.fileWords) {
+			result.add(word);
+		}
+		
+		this.sortedFileWords = result.toArray(new String[0]);
 	}
 
 
@@ -157,7 +184,7 @@ public class SortWordsFromFile implements ReadFromFile { // TODO DEVE implementa
 	
 	@Override
 	public String toString() {
-		return makeString(this.sortedWords);
+		return makeString(this.sortedFileWords);
 	}
 }
 
