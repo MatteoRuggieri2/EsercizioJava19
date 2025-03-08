@@ -170,8 +170,7 @@ public class SortWordsFromFile implements ReadFromFile {
 
 	@Override
 	public void sort() {
-		// TODO Auto-generated method stub
-		
+		sort(EnumSortType.SORT_ASCENDING);
 	}
 
 
