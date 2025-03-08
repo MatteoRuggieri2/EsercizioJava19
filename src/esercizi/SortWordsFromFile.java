@@ -177,7 +177,11 @@ public class SortWordsFromFile implements ReadFromFile {
 
 	@Override
 	public boolean isWordPresent(String word) {
-		// TODO Auto-generated method stub
+		for (String fileWord : this.sortedFileWords) {
+			if (fileWord.equalsIgnoreCase(word)) {
+				return true;
+			}
+		}
 		return false;
 	}
 
