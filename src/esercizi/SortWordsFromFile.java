@@ -21,25 +21,15 @@ public class SortWordsFromFile implements ReadFromFile {
 	private String[] fileWords;
 	
 	private String[] sortedFileWords; // Contiene le parole univoche e ordinate in base alla richiesta
-	
-	
-	//TODO - Da rimuovere e testare in JUnit
-	public static void main(String[] args) {
-		SortWordsFromFile swff = new SortWordsFromFile("src/text_files/word-list.txt");
-		SortWordsFromFile swff2 = new SortWordsFromFile("src/text_files/word-list.txt", EnumSortType.SORT_ASCENDING);
-		SortWordsFromFile swff3 = new SortWordsFromFile("src/text_files/word-list.txt", EnumSortType.SORT_DESCENDING);
-	}
-	
-	
+
+		
 	
 	SortWordsFromFile(String filePath) {
 		extractsStrings(filePath, null);
-		System.out.println(this.toString()); //TODO - Da rimuovere
 	}
 	
 	SortWordsFromFile(String filePath, EnumSortType sortType) {
 		extractsStrings(filePath, sortType);
-		System.out.println(this.toString()); //TODO - Da rimuovere
 	}
 	
 	
