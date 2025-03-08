@@ -56,38 +56,11 @@ public class SortWordsFromFile implements ReadFromFile {
 		this.fileWords = this.fileContent.split(" +");
 		
 		// Le ordino e le rendo univoche (grazie al TreeSet)
-		this.sortedFileWords = sortWords(this.fileWords, sortType);
-	}
-	
-	
-	/* Questo metodo ordina le parole in base alla richiesta e
-	le rende univoche (proprietà del TreeSet) */
-	private String[] sortWords(String[] fileWords, EnumSortType sortType) {
-		
-		/* Esiste un costruttore di TreeSet che accetta come paramtro un Comparator
-		 * (che è un interfaccia) dove io vado ad implementare un metodo compare,
-		 * in modo che quando il mio treeSet dovrà mettere in ordine gli elementi,
-		 * richiamerà il metodo che io ho scritto (che ha sovrascritto il suo).
-		 * In questo caso c'è prima s2 e poi s1 in modo che li mette in ordine DESC. */
-		Set<String> result = new TreeSet<String>(
-			// Classe anonima
-			new Comparator<String>() {
-				public int compare(String s1, String s2) {
-					// s1, s2 ordine alfabetico | s2, s1 ordine alf invertito
-					if (sortType == EnumSortType.SORT_DESCENDING) {
-						return s2.compareTo(s1);
-					} else {
-						return s1.compareTo(s2);
-					}
-				}
-			}
-		);
-		
-		for (String word : fileWords) {
-			result.add(word);
+		if (sortType != null) {
+			sort(sortType);
+		} else {
+			sort();
 		}
-		
-		return result.toArray(new String[0]);
 	}
 
 
@@ -133,6 +106,10 @@ public class SortWordsFromFile implements ReadFromFile {
 	public void setFileName(String filePath) {
 		String[] pathSections = filePath.split("/");
 		this.fileName = pathSections[pathSections.length - 1];
+	}
+	
+	public String getFileName() {
+		return this.fileName;
 	}
 
 
