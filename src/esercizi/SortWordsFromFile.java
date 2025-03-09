@@ -37,7 +37,7 @@ public class SortWordsFromFile implements ReadFromFile {
 	/* Questo metodo è quello principale, ha come compito quello
 	 * di richiamare tutti gli altri metodi della classe che lavorano
 	 * per rendere le parole del file, univoche, uppercase e ordinate. */
-	void extractsStrings(String filePath, EnumSortType sortType) {
+	private void extractsStrings(String filePath, EnumSortType sortType) {
 		
 		// Prendo il contenuto del file
 		this.fileContent = readFile(filePath);
