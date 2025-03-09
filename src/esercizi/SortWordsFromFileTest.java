@@ -10,7 +10,9 @@ class SortWordsFromFileTest {
 	
 	 @Test
 	 void setFileNameTest() {
-	
+		 SortWordsFromFile swff = new SortWordsFromFile(pathFileName);
+		 swff.setFileName(pathFileName);
+		 assertEquals("word-list.txt", swff.getFileName());
 	 }
 	 
 	 @Test
