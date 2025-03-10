@@ -144,7 +144,7 @@ public class SortWordsFromFile implements ReadFromFile {
 	@Override
 	public boolean isWordPresent(String word) {
 		for (String fileWord : this.sortedFileWords) {
-			if (fileWord.equalsIgnoreCase(word)) {
+			if (fileWord.equalsIgnoreCase(word.trim())) {
 				return true;
 			}
 		}
