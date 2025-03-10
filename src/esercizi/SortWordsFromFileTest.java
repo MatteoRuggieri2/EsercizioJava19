@@ -16,11 +16,6 @@ class SortWordsFromFileTest {
 	 }
 	 
 	 @Test
-	 void getFileNameTest() {
-	
-	 }
-	 
-	 @Test
 	 void sortEnumTest() {
 	
 	 }
@@ -32,7 +27,12 @@ class SortWordsFromFileTest {
 	 
 	 @Test
 	 void isWordPresentTest() {
-	
+		 SortWordsFromFile swff = new SortWordsFromFile(pathFileName);
+		 assertTrue(swff.isWordPresent(" sono"));
+		 assertTrue(swff.isWordPresent("sono"));
+		 assertTrue(swff.isWordPresent("Sono"));
+		 assertTrue(swff.isWordPresent("SONO"));
+		 assertFalse(swff.isWordPresent("test"));
 	 }
 	 
 	 @Test
