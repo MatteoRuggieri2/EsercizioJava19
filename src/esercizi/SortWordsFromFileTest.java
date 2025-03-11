@@ -40,6 +40,8 @@ class SortWordsFromFileTest {
 	void isWordPresentTest() {
 		SortWordsFromFile swff = new SortWordsFromFile(pathFileName);
 		assertTrue(swff.isWordPresent(" sono"));
+		assertTrue(swff.isWordPresent("sono "));
+		assertTrue(swff.isWordPresent(" sono "));
 		assertTrue(swff.isWordPresent("sono"));
 		assertTrue(swff.isWordPresent("Sono"));
 		assertTrue(swff.isWordPresent("SONO"));
