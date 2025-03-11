@@ -2,7 +2,6 @@ package esercizi;
 
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
-
 import enums.EnumSortType;
 
 class SortWordsFromFileTest {
