@@ -3,10 +3,15 @@ package esercizi;
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 
+import enums.EnumSortType;
+
 class SortWordsFromFileTest {
 
 	String pathFileName = "src/text_files/word-list.txt";
-
+	
+	String[] wordsSortByASC = {"delle", "parole", "queste", "sono"};
+	
+	String[] wordsSortByDESC = {"sono", "queste", "parole", "delle"};
 	
 	@Test
 	void setFileNameTest() {
@@ -14,17 +19,21 @@ class SortWordsFromFileTest {
 		swff.setFileName(pathFileName);
 		assertEquals("word-list.txt", swff.getFileName());
 	}
-	 
+	
+	// Constructor test
 	@Test
 	void sortEnumTest() {
-	
+		SortWordsFromFile swff = new SortWordsFromFile(pathFileName);
+		assertArrayEquals(wordsSortByASC, swff.getSortedFileWords());
 	}
-	 
+	
+	// Constructor test
 	@Test
 	void sortTest() {
-	
+		SortWordsFromFile swffASC = new SortWordsFromFile(pathFileName, EnumSortType.SORT_ASCENDING);
+		SortWordsFromFile swffDESC = new SortWordsFromFile(pathFileName, EnumSortType.SORT_ASCENDING);
 	}
-	 
+	
 	@Test
 	void isWordPresentTest() {
 		SortWordsFromFile swff = new SortWordsFromFile(pathFileName);
@@ -34,19 +43,20 @@ class SortWordsFromFileTest {
 		assertTrue(swff.isWordPresent("SONO"));
 		assertFalse(swff.isWordPresent("test"));
 	}
-	 
+	
 	@Test
 	void toStringTest() {
-		String expectedString = "QUESTE, DELLE, PAROLE, SONO.";
+		String expectedString = "DELLE, PAROLE, QUESTE, SONO.";
 		SortWordsFromFile swff = new SortWordsFromFile(pathFileName);
 		assertEquals(expectedString, swff.toString());
+		System.out.println(swff.toString());
 	}
-	 
+	
 	@Test
 	void sortWordsFromFileTest() {
 		 
 	}
-	 
+	
 	@Test
 	void sortWordsFromFileTestWithEnum() {
 		 
