@@ -132,7 +132,7 @@ public class SortWordsFromFile implements ReadFromFile {
 		);
 		
 		for (String word : this.fileWords) {
-			result.add(word);
+			result.add(word.toLowerCase());
 		}
 		
 		this.sortedFileWords = result.toArray(new String[0]);
