@@ -12,8 +12,6 @@ import interfaces.ReadFromFile;
 
 public class SortWordsFromFile implements ReadFromFile {
 	
-	// TODO - Questo è l'es 19
-	
 	private String fileName;
 	
 	private String fileContent; // Contiene il contenuto del file in una stringa

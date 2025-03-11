@@ -55,15 +55,5 @@ class SortWordsFromFileTest {
 		assertEquals(expectedString, swff.toString());
 		System.out.println(swff.toString());
 	}
-	
-	@Test
-	void sortWordsFromFileTest() {
-		 
-	}
-	
-	@Test
-	void sortWordsFromFileTestWithEnum() {
-		 
-	}
 
 }
