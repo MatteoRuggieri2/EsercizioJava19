@@ -22,16 +22,18 @@ class SortWordsFromFileTest {
 	
 	// Constructor test
 	@Test
-	void sortEnumTest() {
+	void sortTest() {
 		SortWordsFromFile swff = new SortWordsFromFile(pathFileName);
 		assertArrayEquals(wordsSortByASC, swff.getSortedFileWords());
 	}
 	
 	// Constructor test
 	@Test
-	void sortTest() {
+	void sortEnumTest() {
 		SortWordsFromFile swffASC = new SortWordsFromFile(pathFileName, EnumSortType.SORT_ASCENDING);
-		SortWordsFromFile swffDESC = new SortWordsFromFile(pathFileName, EnumSortType.SORT_ASCENDING);
+		SortWordsFromFile swffDESC = new SortWordsFromFile(pathFileName, EnumSortType.SORT_DESCENDING);
+		assertArrayEquals(wordsSortByASC, swffASC.getSortedFileWords());
+		assertArrayEquals(wordsSortByDESC, swffDESC.getSortedFileWords());
 	}
 	
 	@Test
