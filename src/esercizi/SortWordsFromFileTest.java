@@ -8,46 +8,48 @@ class SortWordsFromFileTest {
 	String pathFileName = "src/text_files/word-list.txt";
 
 	
-	 @Test
-	 void setFileNameTest() {
-		 SortWordsFromFile swff = new SortWordsFromFile(pathFileName);
-		 swff.setFileName(pathFileName);
-		 assertEquals("word-list.txt", swff.getFileName());
-	 }
+	@Test
+	void setFileNameTest() {
+		SortWordsFromFile swff = new SortWordsFromFile(pathFileName);
+		swff.setFileName(pathFileName);
+		assertEquals("word-list.txt", swff.getFileName());
+	}
 	 
-	 @Test
-	 void sortEnumTest() {
+	@Test
+	void sortEnumTest() {
 	
-	 }
+	}
 	 
-	 @Test
-	 void sortTest() {
+	@Test
+	void sortTest() {
 	
-	 }
+	}
 	 
-	 @Test
-	 void isWordPresentTest() {
-		 SortWordsFromFile swff = new SortWordsFromFile(pathFileName);
-		 assertTrue(swff.isWordPresent(" sono"));
-		 assertTrue(swff.isWordPresent("sono"));
-		 assertTrue(swff.isWordPresent("Sono"));
-		 assertTrue(swff.isWordPresent("SONO"));
-		 assertFalse(swff.isWordPresent("test"));
-	 }
+	@Test
+	void isWordPresentTest() {
+		SortWordsFromFile swff = new SortWordsFromFile(pathFileName);
+		assertTrue(swff.isWordPresent(" sono"));
+		assertTrue(swff.isWordPresent("sono"));
+		assertTrue(swff.isWordPresent("Sono"));
+		assertTrue(swff.isWordPresent("SONO"));
+		assertFalse(swff.isWordPresent("test"));
+	}
 	 
-	 @Test
-	 void toStringTest() {
-	
-	 }
+	@Test
+	void toStringTest() {
+		String expectedString = "QUESTE, DELLE, PAROLE, SONO.";
+		SortWordsFromFile swff = new SortWordsFromFile(pathFileName);
+		assertEquals(expectedString, swff.toString());
+	}
 	 
-	 @Test
-	 void sortWordsFromFileTest() {
+	@Test
+	void sortWordsFromFileTest() {
 		 
-	 }
+	}
 	 
-	 @Test
-	 void sortWordsFromFileTestWithEnum() {
+	@Test
+	void sortWordsFromFileTestWithEnum() {
 		 
-	 }
+	}
 
 }
