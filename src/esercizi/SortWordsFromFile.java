@@ -101,6 +101,10 @@ public class SortWordsFromFile implements ReadFromFile {
 	public String getFileName() {
 		return this.fileName;
 	}
+	
+	public String[] getSortedFileWords() {
+		return this.sortedFileWords;
+	}
 
 
 	/* Questo metodo ordina le parole in base alla richiesta e
